@@ -1,41 +1,19 @@
 #!/usr/bin/env python3
 # Generates dark.svg and light.svg GitHub profile hero banners (pure SMIL, no JS)
 import html
+import os
 
-ASCII_ART = r"""
-              .:^~!77777!~^:.
-          :~7JY5PPGGGGGGPP5YJ7~:
-        ^?5PGGGGGGGGGGGGGGGGGP5?^
-       !5GGGGGGGGGG {2} GGGGGGGG5!
-      ^YGGGGGGGGGGGGGGGGGGGGGGGGY^
-   ..:^~!!!!!!!!!!!!!!!!!!!!!!!~^:..
-  ~#@@@@@@@@@@@@@#J!!J#@@@@@@@@@@@@@#~
-  ^&@@@@@@@@@@@@@&7::7&@@@@@@@@@@@@@&^
-   :!JYYYYYYYYJ7^.    .^7JYYYYYYYYJ!:
-       JGGGGGGGY^:....:^YGGGGGGGJ
-       ^5GGGGGGGGGGGGGGGGGGGGG5^
-        :JGGGP?~^^^^^^~?PGGGJ:
-          ^5G~  .:^^:.  ~G5^
-           JP ~WWWWWWWW~ PJ
-           ?P.~WWWWWWWW~.P?
-           ^5!.^!7777!^.!5^
-            :?Y7~~~~~~7Y?:
-              :~7????7~:
-        .^!?J^        ^J?!^.
-     :!J5PGGG5        5GGGP5J!:
-   ^?PGGGGGGG5.      .5GGGGGGGP?^
-  7PGGGGGGGGGP:  ..  :PGGGGGGGGGP7
- !GGGGGGGGGGGG5  55  5GGGGGGGGGGGG!
-""".strip("\n").splitlines()
+_here = os.path.dirname(os.path.abspath(__file__))
+ASCII_ART = open(os.path.join(_here, "ascii.txt"), encoding="utf-8").read().rstrip("\n").splitlines()
 
-ROLES = ["Full Stack Developer", "Game Developer", "AI Enthusiast", "Indie Hacker"]
+ROLES = ["Computer Engineering Student", "Systems & Low-Level Enthusiast", "Algorithms & Data Structures", "Cryptography Enthusiast", "Open Source Learner"]
 INFO = [
-    ("~/location", "Istanbul, Turkiye"),
-    ("~/focus", "Mobile apps - Unity - trading bots"),
-    ("~/github", "github.com/cemdenizexe"),
-    ("~/email", "cemdenizz93@gmail.com"),
+    ("~/location", "Eindhoven, Netherlands"),
+    ("~/focus", "Embedded systems - low-level programming - algorithms"),
+    ("~/github", "github.com/mrbera88"),
+    ("~/email", "berauzun173@gmail.com"),
 ]
-SKILLS = ["React Native", "TypeScript", "Python", "Flutter", "Unity", "C#", "Node.js", "FastAPI", "Tauri", "Supabase", "Git", "Claude Code"]
+SKILLS = ["Python", "Java", "C++", "C#", "SQL", "ARM Assembly", "Git", "Linux", "Data Structures & Algorithms", "RTL Design", "Cryptography"]
 
 PAL = {
   "dark": dict(bg="#030712", panel="#0F172A", panel2="#0B1222", border="rgba(255,255,255,.08)",
@@ -73,7 +51,7 @@ def gen(mode):
     A(f'<linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff" stop-opacity="{".05" if mode=="dark" else ".55"}"/><stop offset="18%" stop-color="#fff" stop-opacity="0"/></linearGradient>')
     # typing clips for roles
     role_w = [len(r)*8.6 for r in ROLES]
-    cyc = 16
+    cyc = 4 * len(ROLES)
     for i, w in enumerate(role_w):
         b = i*4
         A(f'<clipPath id="role{i}"><rect x="536" y="188" height="26" width="0">'
@@ -101,7 +79,7 @@ def gen(mode):
     # window dots
     for i, c in enumerate(["#FF5F57", "#FEBC2E", "#28C840"]):
         A(f'<circle cx="{56+i*22}" cy="56" r="6" fill="{c}" opacity=".9"/>')
-    A(f'<text x="234" y="61" text-anchor="middle" font-size="12" fill="{p["muted"]}">bera@spade: ~/portrait</text>')
+    A(f'<text x="234" y="61" text-anchor="middle" font-size="12" fill="{p["muted"]}">bera@dev: ~/portrait</text>')
     # ascii lines
     y0 = 92
     lh = 13.9
@@ -120,7 +98,7 @@ def gen(mode):
     A(f'<rect x="460" y="32" width="688" height="546" rx="18" fill="url(#glass)"/>')
     for i, c in enumerate(["#FF5F57", "#FEBC2E", "#28C840"]):
         A(f'<circle cx="{486+i*22}" cy="56" r="6" fill="{c}" opacity=".9"/>')
-    A(f'<text x="804" y="61" text-anchor="middle" font-size="12" fill="{p["muted"]}">spade &#8212; zsh &#8212; 120x34</text>')
+    A(f'<text x="804" y="61" text-anchor="middle" font-size="12" fill="{p["muted"]}">mrbera88 &#8212; zsh &#8212; 120x34</text>')
 
     def reveal(el, t):
         return el.replace("<text ", f'<text opacity="0" ', 1).replace("</text>",
@@ -131,12 +109,20 @@ def gen(mode):
     # typing roles
     A(f'<text x="492" y="207" font-size="17" fill="{p["muted"]}">&gt;</text>')
     for i, r in enumerate(ROLES):
-        A(f'<g clip-path="url(#role{i})"><text x="512" y="208" font-size="17" fill="url(#acc)" font-weight="600">{html.escape(r)}</text></g>')
-    kt = "0;0.0875;0.19375;0.23125;0.25;0.3375;0.44375;0.48125;0.5;0.5875;0.69375;0.73125;0.75;0.8375;0.94375;0.98125;1"
-    w0,w1,w2,w3 = [len(r)*8.6 for r in ROLES]
-    vals = f"0 0;{w0:.0f} 0;{w0:.0f} 0;0 0;0 0;{w1:.0f} 0;{w1:.0f} 0;0 0;0 0;{w2:.0f} 0;{w2:.0f} 0;0 0;0 0;{w3:.0f} 0;{w3:.0f} 0;0 0;0 0"
+        w = role_w[i]
+        A(f'<g clip-path="url(#role{i})"><text x="512" y="208" font-size="17" fill="url(#acc)" font-weight="600" '
+          f'textLength="{w:.0f}" lengthAdjust="spacingAndGlyphs">{html.escape(r)}</text></g>')
+    kt_list, vals_list = [], []
+    for i, w in enumerate(role_w):
+        b = i * 4
+        kt_list += [b/cyc, (b+1.4)/cyc, (b+3.1)/cyc, (b+3.7)/cyc]
+        vals_list += ["0 0", f"{w:.0f} 0", f"{w:.0f} 0", "0 0"]
+    kt_list.append(1.0)
+    vals_list.append("0 0")
+    kt = ";".join("0" if t == 0 else ("1" if t == 1 else f"{t:.4f}") for t in kt_list)
+    vals = ";".join(vals_list)
     A(f'<rect x="512" y="193" width="9" height="19" fill="{p["g2"]}"><animate attributeName="opacity" values="1;0;1" dur=".9s" repeatCount="indefinite"/>'
-      f'<animateTransform attributeName="transform" type="translate" dur="16s" repeatCount="indefinite" calcMode="linear" keyTimes="{kt}" values="{vals}"/></rect>')
+      f'<animateTransform attributeName="transform" type="translate" dur="{cyc}s" repeatCount="indefinite" calcMode="linear" keyTimes="{kt}" values="{vals}"/></rect>')
     # info lines
     y = 258
     for i, (k, v) in enumerate(INFO):
@@ -166,24 +152,6 @@ def gen(mode):
     A(f'<rect x="462" y="34" width="684" height="20" fill="{p["scan"]}"><animateTransform attributeName="transform" type="translate" values="0 0;0 520;0 0" dur="9s" repeatCount="indefinite"/></rect>')
     A('</svg>')
     return "".join(s)
-
-# ==== final config overrides (user-requested) ====
-ROLES = ["Computer Engineering Student", "Systems & Low-Level Enthusiast", "Algorithms & Data Structures", "Open Source Learner"]
-INFO = [
-    ("~/location", "Eindhoven, Netherlands"),
-    ("~/focus", "Embedded systems - low-level programming - algorithms"),
-    ("~/github", "github.com/mrbera88"),
-    ("~/email", "berauzun173@gmail.com"),
-]
-SKILLS = ["Python", "Java", "C++", "C#", "SQL", "ARM Assembly", "Git", "Linux", "Data Structures & Algorithms", "RTL Design"]
-
-# If a real photo-derived ascii exists, use it instead of the hand-drawn one
-import os
-_here = os.path.dirname(os.path.abspath(__file__))
-_ap = os.path.join(_here, "ascii.txt")
-if os.path.exists(_ap):
-    ASCII_ART = open(_ap, encoding="utf-8").read().rstrip("\n").splitlines()
-ASCII_ART = [l.replace("{2}", "P2G") for l in ASCII_ART]
 
 for mode in ("dark", "light"):
     with open(os.path.join(_here, f"{mode}.svg"), "w", encoding="utf-8") as f:

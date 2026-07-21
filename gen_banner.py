@@ -54,7 +54,7 @@ def gen(mode):
     cyc = 4 * len(ROLES)
     for i, w in enumerate(role_w):
         b = i*4
-        A(f'<clipPath id="role{i}"><rect x="536" y="188" height="26" width="0">'
+        A(f'<clipPath id="role{i}"><rect x="512" y="188" height="26" width="0">'
           f'<animate attributeName="width" dur="{cyc}s" repeatCount="indefinite" calcMode="linear" '
           f'keyTimes="0;{b/cyc:.4f};{(b+1.4)/cyc:.4f};{(b+3.1)/cyc:.4f};{(b+3.7)/cyc:.4f};1" '
           f'values="0;0;{w:.0f};{w:.0f};0;0"/></rect></clipPath>')

@@ -1,7 +1,7 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./dark.svg?v=4">
-  <source media="(prefers-color-scheme: light)" srcset="./light.svg?v=4">
-  <img alt="Bera Uzun — exploring embedded systems, low-level programming, wearable technology and cybersecurity" src="./dark.svg?v=4" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="./profile-dark-v5.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./profile-light-v5.svg">
+  <img alt="Bera Uzun — exploring embedded systems, low-level programming, wearable technology and cybersecurity" src="./profile-dark-v5.svg" width="100%">
 </picture>
 
 ### Projects

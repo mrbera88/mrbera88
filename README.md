@@ -1,14 +1,8 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./dark.svg?v=3">
-  <source media="(prefers-color-scheme: light)" srcset="./light.svg?v=3">
-  <img alt="Bera Uzun — exploring embedded systems, low-level programming, wearables and cybersecurity" src="./dark.svg?v=3" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="./dark.svg?v=4">
+  <source media="(prefers-color-scheme: light)" srcset="./light.svg?v=4">
+  <img alt="Bera Uzun — exploring embedded systems, low-level programming, wearable technology and cybersecurity" src="./dark.svg?v=4" width="100%">
 </picture>
-
-### About me
-
-I'm Bera, based in Eindhoven, the Netherlands. I'm interested in how software works close to the hardware, especially in embedded systems and wearable devices.
-
-I'm exploring low-level programming, cybersecurity, and the overlap between biosensing, biohacking and wearable technology. I like projects that help me understand how something works underneath the interface.
 
 ### Projects
 
